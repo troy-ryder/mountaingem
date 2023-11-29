@@ -105,6 +105,8 @@
   height: 60px;
   background: #ffffff;
   border-radius: 16px;
+  color: black;
+  list-style-type: none;
 }
 
 .year-answer-card {
