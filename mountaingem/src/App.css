@@ -1,0 +1,181 @@
+#root {
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+
+  width: 400px;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.full-card {
+  background: linear-gradient(180deg, #ededed 0%, #f1f1f1 100%);
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  border-radius: 25px;
+}
+
+.question-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  gap: 32px;
+
+  position: relative;
+  width: 100%;
+}
+
+.question-card-header {
+  background: linear-gradient(135deg, #0075b5 0%, #003a66 100%);
+  width: 90%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  overflow-wrap: break-word;
+}
+
+.question-title {
+  font-family: "Avenir Next LT Com";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 36px;
+
+  color: #ffffff;
+}
+
+.answer-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  gap: 8px;
+
+  width: 80%;
+  height: 332px;
+}
+
+.answer-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 32px;
+  gap: 8px;
+
+  width: 80%;
+  height: 60px;
+  background: #ffffff;
+  border-radius: 16px;
+}
+
+.year-answer-card {
+  display: flex;
+  width: 80%;
+  height: 264px;
+  padding: 33px 48px 33px 49px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+
+  border-radius: 24px;
+}
+
+.top-year-card {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 6px;
+  border-radius: 8px 8px 0px 0px;
+  background: var(--grays-white, #fff);
+}
+
+.year-display {
+  color: #000;
+  text-align: center;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Avenir Next LT Com;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 50px; /* 100% */
+  letter-spacing: -0.4px;
+}
+
+.year-text {
+  color: #000;
+
+  text-align: center;
+  font-feature-settings: "clig" off, "liga" off;
+  /* eyebrow/demi-mobile */
+  font-family: Avenir Next LT Com;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 16px; /* 133.333% */
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+}
+
+.bottom-year-card {
+  width: 100%;
+  height: 50px;
+  align-items: center;
+  border-radius: 0px 0px 24px 24px;
+  background: var(--surfaces-dark-primary-bold, #003a66);
+}
+
+.year-button {
+  color: var(--text-primary-on-dark, #fff);
+
+  text-align: center;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: SF Pro;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 590;
+  line-height: 22px; /* 129.412% */
+  letter-spacing: -0.4px;
+  background: var(--surfaces-dark-primary-bold, #003a66);
+}
