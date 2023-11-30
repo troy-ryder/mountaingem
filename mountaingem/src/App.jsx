@@ -12,8 +12,9 @@ function App() {
   const [count, setCount] = useState(0); //TODO Change
   const [QA, setQA] = useState("");
   const [chatHistory, setChatHistory] = useState("");
+  const [apiKey, setApiKey] = useState("");
 
-  if (count < 5) {
+  if (count < 6) {
     return (
       <div className="full-card">
         <Question
@@ -21,6 +22,7 @@ function App() {
           questionSetCount={setCount}
           QA={QA}
           setQA={setQA}
+          setApiKey={setApiKey}
         />
       </div>
     );
@@ -28,12 +30,16 @@ function App() {
   var context =
     "Questions and Answers: " +
     QA +
-    " \nContext: " +
+    " \nPrompt: " +
     `
-    You are a helpful investment advisor. With the human user ask questions to determine \
-    to understand what their investment goals are and answer questions they may ask. Learn \
-    their name and age. Also use the previous questions and answers to help direct the conversation. \
-    Be friendly and let the conversation flow naturally. Try to limit response to 3-5 sentences.
+    You are a chatbot designed to ask questions to build a financial profile of a potential investor. \
+    You're goal is to understand the potential clients name, age, networth, income, details of potential loans, \
+    future financial goals, risk tolerance, and typical expenses this person may have. If they have a question answer briefly, but your goal \
+    is to collect information for a human financial advisor to review at a later time. \
+    Additionally the human has already answered questions previously. You can use the answers from \
+    the question and answers provided. Do not ask questions from the question and answer portion. \
+    Be friendly, try not to sound robotic, and let the conversation flow naturally. \
+    After about six messages from the human, say goodbye and give a summary of the conversation.
     `;
   var aiMess =
     "Hello! I'm here to help you with your financial goals. May I know your name and age, please?";
@@ -42,12 +48,14 @@ function App() {
   if (chatHistory.length == 0) {
     setChatHistory(context);
   }
+  console.log(apiKey);
 
   return (
     <Chatbot
       context={context}
       chatHistory={chatHistory}
       setChatHistory={setChatHistory}
+      apiKey={apiKey}
     />
   );
 }

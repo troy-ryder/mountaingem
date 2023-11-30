@@ -34,7 +34,7 @@ function ListAnswer({ questionNumber, questionSetCount, QA, setQA, question }) {
   var answers = Answers[questionNumber];
   function submitAnswer(chosenAnswer) {
     var questionAnswerString =
-      "Question: " + question + " Answer: " + chosenAnswer;
+      "Question: " + question + " Human Answer: " + chosenAnswer;
     setQA((QA) => QA.concat(" ", questionAnswerString));
     questionSetCount(questionNumber + 1);
   }
@@ -75,7 +75,7 @@ function InputAnswer({
   }
   function submitAnswer(chosenAnswer) {
     var questionAnswerString =
-      "Question: " + question + " Answer: " + chosenAnswer;
+      "Question: " + question + " Human Answer: " + chosenAnswer;
     setQA((QA) => QA.concat(" ", questionAnswerString));
     questionSetCount(questionNumber + 1);
   }
@@ -104,5 +104,19 @@ function InputAnswer({
   );
 }
 
+function TextAnswer({ questionNumber, questionSetCount, setAPI }) {
+  const setAPIKey = (event) => {
+    setAPI(event.target.value);
+  };
+  return (
+    <>
+      <input type="text" onChange={setAPIKey}></input>
+      <button onClick={() => questionSetCount(questionNumber + 1)}>
+        Submit
+      </button>
+    </>
+  );
+}
+
 export default ListAnswer;
-export { InputAnswer };
+export { InputAnswer, TextAnswer };

@@ -2,8 +2,8 @@ import { ChatOpenAI } from "langchain/chat_models/openai";
 import { AIMessage, HumanMessage, SystemMessage } from "langchain/schema";
 
 const API = {
-  GetChatbotResponse: async (message, chatHistory) => {
-    const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
+  GetChatbotResponse: async (message, chatHistory, apiKey) => {
+    const OPENAI_API_KEY = apiKey;
 
     const chat = new ChatOpenAI({
       temperature: 0.9,

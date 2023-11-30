@@ -13,7 +13,7 @@ import "./styles.css";
 import Header from "./components/Header";
 import { AIMessage, HumanMessage, SystemMessage } from "langchain/schema";
 
-function Chatbot({ context, chatHistory, setChatHistory }) {
+function Chatbot({ context, chatHistory, setChatHistory, apiKey }) {
   const [messages, setMessages] = useState([]);
   const [botMessage, setBotMessage] = useState("");
 
@@ -33,7 +33,7 @@ function Chatbot({ context, chatHistory, setChatHistory }) {
         <BotMessage
           key="0"
           fetchMessage={async () =>
-            await API.GetChatbotResponse("", chatHistory)
+            await API.GetChatbotResponse("", chatHistory, apiKey)
           }
           setBotMessage={setBotMessage}
         />,
@@ -47,7 +47,7 @@ function Chatbot({ context, chatHistory, setChatHistory }) {
       <BotMessage
         key={messages.length + 2}
         fetchMessage={async () =>
-          await API.GetChatbotResponse(text, chatHistory)
+          await API.GetChatbotResponse(text, chatHistory, apiKey)
         }
         setBotMessage={setBotMessage}
       />

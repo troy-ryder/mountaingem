@@ -1,4 +1,4 @@
-import ListAnswer, { InputAnswer } from "./Answer";
+import ListAnswer, { InputAnswer, TextAnswer } from "./Answer";
 
 var Questions = [
   "What is your financial Goal?",
@@ -6,14 +6,15 @@ var Questions = [
   "In five years how do you forsee your standard of living compared to today?",
   "Which investment strategy would you be most comfortable with?",
   "How optimistic do you feel about the long term growth of the economy?",
+  "Input OpenAI API key",
 ];
 
-function Question({ questionNumber, questionSetCount, QA, setQA }) {
+function Question({ questionNumber, questionSetCount, QA, setQA, setApiKey }) {
   var question = Questions[questionNumber];
   var answerBlock;
-  if (questionNumber != 1) {
+  if (questionNumber == 1) {
     answerBlock = (
-      <ListAnswer
+      <InputAnswer
         questionNumber={questionNumber}
         questionSetCount={questionSetCount}
         QA={QA}
@@ -21,9 +22,17 @@ function Question({ questionNumber, questionSetCount, QA, setQA }) {
         question={question}
       />
     );
+  } else if (questionNumber == 5) {
+    answerBlock = (
+      <TextAnswer
+        questionNumber={questionNumber}
+        questionSetCount={questionSetCount}
+        setAPI={setApiKey}
+      />
+    );
   } else {
     answerBlock = (
-      <InputAnswer
+      <ListAnswer
         questionNumber={questionNumber}
         questionSetCount={questionSetCount}
         QA={QA}
