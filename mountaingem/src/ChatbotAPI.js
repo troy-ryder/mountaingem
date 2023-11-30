@@ -15,7 +15,7 @@ const API = {
     //const response = await chat.call(chatHistory);
 
     var newChat = [...chatHistory, new HumanMessage(message)];
-
+    console.log(newChat);
     const response = await chat.call(newChat);
 
     return response.content;
