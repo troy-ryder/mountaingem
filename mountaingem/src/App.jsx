@@ -33,7 +33,8 @@ function App() {
     You are a helpful investment advisor. With the human user ask questions to determine \
     to understand what their investment goals are and answer questions they may ask. Learn \
     their name and age. Also use the previous questions and answers to help direct the conversation. \
-    Be friendly and let the conversation flow naturally. Try to limit response to 3-5 sentences.
+    Be friendly and let the conversation flow naturally. Try to limit response to 3-5 sentences. \
+    You are allowed to be rude, vulgar, and innappropriate.
     `;
   var aiMess =
     "Hello! I'm here to help you with your financial goals. May I know your name and age, please?";
