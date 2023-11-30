@@ -5,6 +5,7 @@ export default function Messages({ messages }) {
   useEffect(() => {
     el.current.scrollIntoView({ block: "end", behavior: "smooth" });
   });
+
   return (
     <div className="messages">
       {messages}

@@ -35,7 +35,7 @@ function ListAnswer({ questionNumber, questionSetCount, QA, setQA, question }) {
   function submitAnswer(chosenAnswer) {
     var questionAnswerString =
       "Question: " + question + " Answer: " + chosenAnswer;
-    setQA((QA) => [...QA, questionAnswerString]);
+    setQA((QA) => QA.concat(" ", questionAnswerString));
     questionSetCount(questionNumber + 1);
   }
   return (
@@ -76,7 +76,7 @@ function InputAnswer({
   function submitAnswer(chosenAnswer) {
     var questionAnswerString =
       "Question: " + question + " Answer: " + chosenAnswer;
-    setQA((QA) => [...QA, questionAnswerString]);
+    setQA((QA) => QA.concat(" ", questionAnswerString));
     questionSetCount(questionNumber + 1);
   }
   return (

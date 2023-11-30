@@ -11,31 +11,48 @@ import API from "./ChatbotAPI";
 
 import "./styles.css";
 import Header from "./components/Header";
+import { AIMessage, HumanMessage, SystemMessage } from "langchain/schema";
 
-function Chatbot() {
+function Chatbot({ context, chatHistory, setChatHistory }) {
   const [messages, setMessages] = useState([]);
+  const [botMessage, setBotMessage] = useState("");
+
+  function setAll(message, text) {
+    setMessages(message);
+
+    setChatHistory([
+      ...chatHistory,
+      new HumanMessage(text),
+      new AIMessage(botMessage),
+    ]);
+  }
 
   useEffect(() => {
     async function loadWelcomeMessage() {
       setMessages([
         <BotMessage
           key="0"
-          fetchMessage={async () => await API.GetChatbotResponse("hi")}
+          fetchMessage={async () =>
+            await API.GetChatbotResponse("", chatHistory)
+          }
+          setBotMessage={setBotMessage}
         />,
       ]);
     }
     loadWelcomeMessage();
   }, []);
-
   const send = async (text) => {
     const newMessages = messages.concat(
       <UserMessage key={messages.length + 1} text={text} />,
       <BotMessage
         key={messages.length + 2}
-        fetchMessage={async () => await API.GetChatbotResponse(text)}
+        fetchMessage={async () =>
+          await API.GetChatbotResponse(text, chatHistory)
+        }
+        setBotMessage={setBotMessage}
       />
     );
-    setMessages(newMessages);
+    setAll(newMessages, text);
   };
 
   return (
