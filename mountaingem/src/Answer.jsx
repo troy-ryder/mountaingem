@@ -1,41 +1,32 @@
 import { useState } from "react";
+import { AIMessage, HumanMessage, SystemMessage } from "langchain/schema";
 
 var Answers = [
   [
-    "Wealth Generation",
-    "Wealth Accumulation",
-    "Investing Knowledge",
-    "Future Planning",
-    "Other",
+    "Saving for a big purchase",
+    "Paying down student loans",
+    "General financial planning",
+    "Latest investment strategies",
+    "Retirement Planning",
   ],
+  [
+    "Aggressive",
+    "Growth",
+    "Growth and Income",
+    "Conservative",
+    "I don't know yet",
+  ],
+  ["Student Loans", "Credit Card Debt", "Mortgage", "Auto Loan", "Other"],
   ["A"],
-  [
-    "Substantially Greater",
-    "Somewhat Greater",
-    "About The Same",
-    "Lower Than Today",
-  ],
-  [
-    "Very Stable but Lower Growth",
-    "Mix of Stable and Higher Growth",
-    "High Growth Potential with Risks",
-    "Not Quite Sure, Need Help",
-  ],
-  [
-    "Optimistic",
-    "Somewhat Optimistic",
-    "Uncertain",
-    "Somewhat Pessimistic",
-    "Pessimistic",
-  ],
+  ["0-2%", "2-4%", "4-6%", "6-8%", "Above 8%"],
 ];
 
 function ListAnswer({ questionNumber, questionSetCount, QA, setQA, question }) {
   var answers = Answers[questionNumber];
   function submitAnswer(chosenAnswer) {
-    var questionAnswerString =
-      "Question: " + question + " Human Answer: " + chosenAnswer;
-    setQA((QA) => QA.concat(" ", questionAnswerString));
+    var questionMessage = new AIMessage(question);
+    var answerMessage = new HumanMessage(chosenAnswer);
+    setQA([...QA, questionMessage, answerMessage]);
     questionSetCount(questionNumber + 1);
   }
   return (

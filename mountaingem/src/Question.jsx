@@ -1,18 +1,18 @@
 import ListAnswer, { InputAnswer, TextAnswer } from "./Answer";
 
 var Questions = [
-  "What is your financial Goal?",
-  "What time frame do you envision to achieve your financial goal?",
-  "In five years how do you forsee your standard of living compared to today?",
-  "Which investment strategy would you be most comfortable with?",
-  "How optimistic do you feel about the long term growth of the economy?",
+  "Tell me about what you want help with:",
+  "What is your preferred investment strategy?",
+  "What is your largest source of debt right now?",
+  "What is the length of time remaining on your loan?",
+  "Approximately what is the interest rate on the loan?",
   "Input OpenAI API key",
 ];
 
 function Question({ questionNumber, questionSetCount, QA, setQA, setApiKey }) {
   var question = Questions[questionNumber];
   var answerBlock;
-  if (questionNumber == 1) {
+  if (questionNumber == 3) {
     answerBlock = (
       <InputAnswer
         questionNumber={questionNumber}

@@ -10,7 +10,7 @@ import { ChatOpenAI } from "langchain/chat_models/openai";
 
 function App() {
   const [count, setCount] = useState(0); //TODO Change
-  const [QA, setQA] = useState("");
+  const [QA, setQA] = useState([]);
   const [chatHistory, setChatHistory] = useState("");
   const [apiKey, setApiKey] = useState("");
 
@@ -28,24 +28,22 @@ function App() {
     );
   }
   var context =
-    "Questions and Answers: " +
-    QA +
     " \nPrompt: " +
-    `
+    `\
     You are a chatbot designed to ask questions to build a financial profile of a potential investor. \
-    You're goal is to understand the potential clients name, age, networth, income, details of potential loans, \
-    future financial goals, risk tolerance, and typical expenses this person may have. If they have a question answer briefly, but your goal \
+    You're goal is to understand the potential clients name, age, networth, income, details of loans, money they want to invest per month \
+    financial goals, and typical monthly expenses this person may have. If they have a question answer briefly, but your goal \
     is to collect information for a human financial advisor to review at a later time. \
-    Additionally the human has already answered questions previously. You can use the answers from \
-    the question and answers provided. Do not ask questions from the question and answer portion. \
+    If they answered I don't know to their preferred investment strategy, give them information about different risk \
+    tolerances and investment and see if they prefer any again.
     Be friendly, try not to sound robotic, and let the conversation flow naturally. \
-    After about six messages from the human, say goodbye and give a summary of the conversation.
     `;
   var aiMess =
     "Hello! I'm here to help you with your financial goals. May I know your name and age, please?";
 
-  context = [new SystemMessage(context), new AIMessage(aiMess)];
   if (chatHistory.length == 0) {
+    context = [new SystemMessage(context)];
+    context.push(...QA, new AIMessage(aiMess));
     setChatHistory(context);
   }
   console.log(apiKey);
