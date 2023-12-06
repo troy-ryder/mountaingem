@@ -13,18 +13,21 @@ import "./styles.css";
 import Header from "./components/Header";
 import { AIMessage, HumanMessage, SystemMessage } from "langchain/schema";
 
-function Chatbot({ context, chatHistory, setChatHistory, apiKey }) {
+function Chatbot({
+  context,
+  chatHistory,
+  setChatHistory,
+  apiKey,
+  setCount,
+  count,
+}) {
   const [messages, setMessages] = useState([]);
   const [botMessage, setBotMessage] = useState("");
 
   function setAll(message, text) {
     setMessages(message);
 
-    setChatHistory([
-      ...chatHistory,
-      new HumanMessage(text),
-      new AIMessage(botMessage),
-    ]);
+    //setChatHistory([...chatHistory, new HumanMessage(text)]);
   }
 
   useEffect(() => {
@@ -50,17 +53,23 @@ function Chatbot({ context, chatHistory, setChatHistory, apiKey }) {
           await API.GetChatbotResponse(text, chatHistory, apiKey)
         }
         setBotMessage={setBotMessage}
+        chatHistory={chatHistory}
+        setChatHistory={setChatHistory}
+        humanMessage={text}
       />
     );
     setAll(newMessages, text);
   };
 
   return (
-    <div className="chatbot">
-      <Header />
-      <Messages messages={messages} />
-      <Input onSend={send} />
-    </div>
+    <>
+      <div className="chatbot">
+        <Header />
+        <Messages messages={messages} />
+        <Input onSend={send} />
+      </div>
+      <button onClick={() => setCount(count + 1)}>End</button>
+    </>
   );
 }
 

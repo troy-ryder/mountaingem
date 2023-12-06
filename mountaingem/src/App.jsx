@@ -1,12 +1,9 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import Question from "./Question";
 import Chatbot from "./ChatBot";
-import { BufferMemory } from "langchain/memory";
 import { AIMessage, SystemMessage } from "langchain/schema";
-import { ChatOpenAI } from "langchain/chat_models/openai";
+import Summary from "./Summary";
 
 function App() {
   const [count, setCount] = useState(0); //TODO Change
@@ -26,10 +23,10 @@ function App() {
         />
       </div>
     );
-  }
-  var context =
-    " \nPrompt: " +
-    `\
+  } else if (count < 7) {
+    var context =
+      " \nPrompt: " +
+      `\
     You are a chatbot designed to ask questions to build a financial profile of a potential investor. \
     You're goal is to understand the potential clients name, age, networth, income, details of loans, money they want to invest per month \
     financial goals, and typical monthly expenses this person may have. If they have a question answer briefly, but your goal \
@@ -38,24 +35,28 @@ function App() {
     tolerances and investment and see if they prefer any again.
     Be friendly, try not to sound robotic, and let the conversation flow naturally. \
     `;
-  var aiMess =
-    "Hello! I'm here to help you with your financial goals. May I know your name and age, please?";
+    var aiMess =
+      "Hello! I'm here to help you with your financial goals. May I know your name and age, please?";
 
-  if (chatHistory.length == 0) {
-    context = [new SystemMessage(context)];
-    context.push(...QA, new AIMessage(aiMess));
-    setChatHistory(context);
+    if (chatHistory.length == 0) {
+      context = [new SystemMessage(context)];
+      context.push(...QA, new AIMessage(aiMess));
+      setChatHistory(context);
+    }
+    console.log(apiKey);
+
+    return (
+      <Chatbot
+        context={context}
+        chatHistory={chatHistory}
+        setChatHistory={setChatHistory}
+        apiKey={apiKey}
+        setCount={setCount}
+        count={count}
+      />
+    );
   }
-  console.log(apiKey);
-
-  return (
-    <Chatbot
-      context={context}
-      chatHistory={chatHistory}
-      setChatHistory={setChatHistory}
-      apiKey={apiKey}
-    />
-  );
+  return <Summary chatHistory={chatHistory} apiKey={apiKey} />;
 }
 
 export default App;
